@@ -4,6 +4,7 @@ import "dotenv/config";
 import "./tasks/block-num";
 import "hardhat-gas-reporter";
 import "solidity-coverage";
+import "@typechain/hardhat"
 
 const RPC_URL = process.env.RPC_URL || "https://eth-sepolia-rpc.herokuapp.com/";
 const PRIVATE_KEY = process.env.PRIVATE_KEY! || "0xkey";

@@ -1,8 +1,10 @@
 import { ethers } from "hardhat";
 import { expect } from "chai";
+import { SimpleStorage, SimpleStorage__factory } from "../typechain-types";
 
 describe("SimpleStorage", async () => {
-  let SimpleStorageFactory, simpleStorage: any;
+  let SimpleStorageFactory: SimpleStorage__factory,
+    simpleStorage: SimpleStorage;
 
   beforeEach(async function () {
     const SimpleStorageFactory = await ethers.getContractFactory(
