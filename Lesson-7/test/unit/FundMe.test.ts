@@ -43,11 +43,16 @@ describe("fundMe", async () => {
     });
   });
 
+
+
+
   describe("withdraw", async () => {
     beforeEach(async () => {
       await fundMe.fund({ value: fundAmount });
     });
 
+
+    //? withdraw
     it("withdraw ETH from a single founder", async () => {
       const startingBalance = await ethers.provider.getBalance(fundMe.address);
       const startingDeployerBalance = await ethers.provider.getBalance(
@@ -115,5 +120,75 @@ describe("fundMe", async () => {
         "You are not the owner!"
       );
     });
+
+    
+
+
+
+    //? cheaperWithdraw
+    it("allows multiple funders to cheaperWithdraw", async () => {
+      const accounts = await ethers.getSigners();
+      for (let i = 0; i < 6; i++) {
+        await fundMe.connect(accounts[i]).fund({ value: fundAmount });
+      }
+
+      const startingBalance = await ethers.provider.getBalance(fundMe.address);
+      const startingDeployerBalance = await ethers.provider.getBalance(
+        deployer
+      );
+
+      //? calls the withdraw function by the owner or deployer
+      const transactionResponse = await fundMe.cheaperWithdraw();
+      const transactionReceipt = await transactionResponse.wait(1);
+
+      const { gasUsed, effectiveGasPrice } = transactionReceipt;
+      const gasCost = effectiveGasPrice.mul(gasUsed);
+
+      const endingBalance = await ethers.provider.getBalance(fundMe.address);
+      const endingDeployerBalance = await ethers.provider.getBalance(deployer);
+
+      assert.equal(endingBalance.toString(), "0");
+      assert.equal(
+        startingBalance.add(startingDeployerBalance).toString(),
+        endingDeployerBalance.add(gasCost).toString()
+      );
+
+      //? make sure the funders are removed from the funders array
+      expect(await fundMe.s_funders.length).to.equal(0);
+
+      for (let i = 0; i < 6; i++) {
+        expect(
+          await fundMe.s_addressToAmountFunded(accounts[i].address)
+        ).to.equal(0);
+      }
+    });
+
+
+
+
+
+    it("cheaperWithdraw ETH from a single founder", async () => {
+      const startingBalance = await ethers.provider.getBalance(fundMe.address);
+      const startingDeployerBalance = await ethers.provider.getBalance(
+        deployer
+      );
+
+      //? calls the withdraw function by the owner or deployer
+      const transactionResponse = await fundMe.cheaperWithdraw();
+      const transactionReceipt = await transactionResponse.wait(1);
+
+      const { gasUsed, effectiveGasPrice } = transactionReceipt;
+      const gasCost = effectiveGasPrice.mul(gasUsed);
+
+      const endingBalance = await ethers.provider.getBalance(fundMe.address);
+      const endingDeployerBalance = await ethers.provider.getBalance(deployer);
+
+      assert.equal(endingBalance.toString(), "0");
+      assert.equal(
+        startingBalance.add(startingDeployerBalance).toString(),
+        endingDeployerBalance.add(gasCost).toString()
+      );
+    });
+
   });
 });

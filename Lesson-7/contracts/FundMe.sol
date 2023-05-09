@@ -20,7 +20,7 @@ contract FundMe {
   // Array of funders
   address[] public s_funders;
   // Owner of the contract
-  address public s_owner;
+  address public immutable i_owner;
   // Price feed contract from Chainlink
   AggregatorV3Interface public s_priceFeed;
 
@@ -29,7 +29,7 @@ contract FundMe {
     // Set the price feed contract
     s_priceFeed = AggregatorV3Interface(priceFeedAddress);
     // Set the owner of the contract to the address that deployed it
-    s_owner = msg.sender;
+    i_owner = msg.sender;
   }
 
   /**
@@ -52,7 +52,7 @@ contract FundMe {
 
   // Modifier for restricting access to the contract owner only
   modifier onlyOwner() {
-    require(msg.sender == s_owner, "You are not the owner!");
+    require(msg.sender == i_owner, "You are not the owner!");
     _;
   }
 
