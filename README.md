@@ -10,6 +10,7 @@ This repository contains projects and lessons in my learning journey of web3 dev
 - **Lesson 5**: SimpleStorage settingUp in local environment and introduction to Hardhat.
 - **Lesson 6**: Introduction to more tools in Hardhat for testing, encryption and gas reporting.
 - **Lesson 7**: Implemented fundMe project with Hardhat and written testcases.
+- **Lesson 8**: Implemented frontEnd for the fundMe project and connectivity with Metamask for the app.
 
 ## Usage
 
