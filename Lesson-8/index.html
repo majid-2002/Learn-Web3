@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fund Me App</title>
+
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            body {
+                font-family: sans-serif;
+                display: flex;
+                background: rgb(98, 116, 255);
+                background: linear-gradient(
+                    87deg,
+                    rgba(98, 116, 255, 1) 44%,
+                    rgba(77, 211, 255, 1) 96%
+                );
+                justify-content: center;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                margin-top: 5em;
+                align-items: center;
+                background-color: #ffffff;
+                width: 400px;
+                padding: 1em;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+            }
+            button {
+                margin: 10px;
+                padding: 10px;
+                font-weight: bold;
+                font-size: 1.2rem;
+                color: white;
+                width: 100%;
+                border: none;
+                background: rgb(98, 116, 255);
+            }
+
+            input {
+                margin: 10px;
+                outline: none;
+                padding: 10px;
+                font-size: 1.2rem;
+                font-weight: bold;
+                width: 100%;
+                border-color: rgb(98, 116, 255);
+            }
+
+            .row {
+                display: flex;
+            }
+
+            .balance-btn,
+            .balance-input {
+                width: 50%;
+                margin: 0;
+            }
+
+            .error-handling {
+                position: absolute;
+                display: none;
+                justify-content: center;
+                align-items: center;
+                height: 40px;
+                background-color: #2f2b2b;
+                color: #f44343;
+                font-size: 0.9rem;
+                font-weight: bold;
+                margin-top: 10px;
+                padding-inline: 2em;
+                border-radius: 8px;
+                border: 2px solid #e4dddd;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+                transition: opacity 0.5s ease-out;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <button id="connectButton">Connect</button>
+            <div class="row">
+                <button id="balanceButton" class="balance-btn">getBalance</button>
+                <input id="balance-input" class="balance-input" readonly />
+            </div>
+            <button id="withdrawButton">Withdraw</button>
+            <!-- <form> -->
+            <label for="ethAmount">ETH Amount</label>
+            <input id="ethAmount" placeholder="0.1" type="number" />
+            <button type="button" id="fundButton">Fund</button>
+        </div>
+
+        <div id="error-card" class="error-handling">
+            <p id="error-message">&#9888; Enter a Amount..</p>
+        </div>
+        <!-- </form> -->
+    </body>
+
+    <script src="./index.js" type="module"></script>
+</html>
