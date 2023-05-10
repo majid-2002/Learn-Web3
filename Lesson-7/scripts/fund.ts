@@ -1,4 +1,5 @@
 import { ethers, getNamedAccounts, deployments } from "hardhat"
+import { FundMe } from "../typechain-types"
 
 async function main() {
   const { deployer } = await getNamedAccounts()
@@ -9,7 +10,7 @@ async function main() {
   //   fundMeDeployment.address,
   //   deployer
   // )
-  const fundMe = await ethers.getContract("FundMe", deployer)
+  const fundMe : FundMe = await ethers.getContract("FundMe", deployer)
   console.log(`Got contract FundMe at ${fundMe.address}`)
   console.log("Funding contract...")
   const transactionResponse = await fundMe.fund({
