@@ -9,7 +9,7 @@ This repository contains projects and lessons in my learning journey of web3 dev
 - **Lesson 4**: A funding app with price conversion and using oracle like chainlink.
 - **Lesson 5**: SimpleStorage settingUp in local environment and introduction to Hardhat.
 - **Lesson 6**: Introduction to more tools in Hardhat for testing, encryption and gas reporting.
-- **Lesson 7**: Implemented fundMe project with Hardhat and write testcases.
+- **Lesson 7**: Implemented fundMe project with Hardhat and written testcases.
 
 ## Usage
 
