@@ -31,7 +31,7 @@ Solidity also has the concept of state variables, which are variables that are s
 
 Events are a way for a contract to communicate with the outside world by emitting a log message that can be observed by external systems:
 
-```
+```solidity
 event NewPlayer(address indexed player);
 
 function enterRaffle() public payable {
@@ -46,7 +46,7 @@ Here, the `NewPlayer` event is emitted whenever a new player enters the raffle. 
 
 The `fallback` function is executed whenever a function is called on the contract that does not exist. It can be used to handle Ether sent to the contract without a specific function call:
 
-```
+```solidity
 fallback() external payable {
     // handle incoming Ether
 }
@@ -54,7 +54,7 @@ fallback() external payable {
 
 The `receive` function is a new function added in Solidity 0.6.0 that is called whenever the contract receives Ether:
 
-```
+```solidity
 receive() external payable {
     // handle incoming Ether
 }
@@ -67,7 +67,7 @@ This function is called automatically whenever the contract receives Ether witho
 
 In Solidity, contracts can inherit from other contracts, allowing them to reuse code and state variables. Here's an example:
 
-```
+```solidity
 contract Base {
     uint256 private i_baseValue;
 
@@ -89,7 +89,7 @@ Here, the `Derived` contract inherits from `Base`, which means it has access to 
 
 The constructor is a special function that is executed when a contract is deployed. It is used to initialize the contract's state variables:
 
-```
+```solidity
 contract MyContract {
     uint256 private i_value;
 
@@ -105,7 +105,7 @@ Here, the `MyContract` constructor takes an `initialValue` parameter and sets th
 
 Mappings are a way of storing key-value pairs in Solidity. They can be used to implement data structures like dictionaries and hash tables:
 
-```
+```solidity
 mapping (address => uint256) private s_balances;
 
 function setBalance(address account, uint256 balance) public {
@@ -123,7 +123,7 @@ Here, `s_balances` is a mapping that associates an address with a uint256 value.
 
 Arrays are a way of storing lists of values in Solidity:
 
-```
+```solidity
 uint256[] private s_values;
 
 function addValue(uint256 newValue) public {
@@ -141,7 +141,7 @@ Here, `s_values` is an array of uint256 values. The `addValue` function is used 
 
 The `address` type is used to represent Ethereum addresses in Solidity:
 
-```
+```solidity
 function sendEth(address payable recipient, uint256 amount) public {
     recipient.transfer(amount);
 }
@@ -153,7 +153,7 @@ Here, `recipient` is an `address payable` parameter, which means it can receive 
 
 Libraries are reusable pieces of code that can be shared across contracts. They are similar to classes in object-oriented programming languages:
 
-```
+```solidity
 library Math {
     function add(uint256 a, uint256 b) internal pure returns (uint256) {
         return a + b;
